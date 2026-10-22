@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
-import { Home, Map, Building2, BarChart3, FileText, Inbox, ClipboardList, Search, Menu, X } from 'lucide-react'
+import { Home, Map, Building2, BarChart3, FileText, Inbox, ClipboardList, Search, Menu, X, LogOut } from 'lucide-react'
 import { VEDS, VEDS_LATER, REGIONS, DATA_DATE } from '../config/reference'
 import { useFilters, PERIOD_OPTIONS, periodLabel } from '../state/filters'
 import type { VedFilter } from '../state/filters'
@@ -22,6 +22,9 @@ export const LAST_REGION_KEY = 'upch-last-region'
 export const lastRegion = () => {
   try { return Number(localStorage.getItem(LAST_REGION_KEY)) || 38 } catch { return 38 }
 }
+
+// Общая страница входа: выход из карты ведет на нее
+const PORTAL_URL = 'https://daria71321-netizen.github.io/fgis-upch-portal/'
 
 function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
   const { qs } = useFilters()
@@ -59,6 +62,14 @@ function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
           )
         })}
         <div className="mt-auto mx-1 rounded-[20px] bg-white/70 p-4 text-xs leading-snug text-side-ink"><span className="block font-display text-ink text-sm mb-1">Данные могут быть неточными</span>Демонстрационный режим: значения тестовые, для части регионов оценочные</div>
+        <a
+          href={PORTAL_URL}
+          onClick={() => { try { sessionStorage.removeItem('fgis-upch-user') } catch { /* нет доступа к хранилищу */ } }}
+          className="mx-1 mt-2 flex items-center gap-3 rounded-full px-4 py-2.5 text-[15px] font-semibold text-ink hover:bg-black/[.05] transition-colors"
+        >
+          <LogOut size={18} aria-hidden />
+          Выйти
+        </a>
       </nav>
     </>
   )
