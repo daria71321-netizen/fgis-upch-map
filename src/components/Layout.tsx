@@ -58,7 +58,7 @@ function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
             </NavLink>
           )
         })}
-        <div className="mt-auto mx-1 rounded-[20px] bg-white/70 p-4 text-xs leading-snug text-side-ink"><span className="block font-display text-ink text-sm mb-1">Карта для помощи,</span>а не для наказания</div>
+        <div className="mt-auto mx-1 rounded-[20px] bg-white/70 p-4 text-xs leading-snug text-side-ink"><span className="block font-display text-ink text-sm mb-1">Данные могут быть неточными</span>Демонстрационный режим: значения тестовые, для части регионов оценочные</div>
       </nav>
     </>
   )
@@ -200,7 +200,7 @@ export function Footer() {
   const { data } = useStore()
   return (
     <footer className="mt-10 mx-3 lg:mx-4 mb-3 rounded-[24px] bg-side text-side-ink px-6 py-5 text-xs grid gap-1.5">
-      <p className="text-sm text-ink font-display font-normal tracking-tight">Карта для помощи, а не для наказания: показатели являются основанием для дополнительной проверки и анализа, а не для санкций.</p>
+      <p className="text-sm text-ink font-display font-normal tracking-tight">Данные могут быть неточными: значения демонстрационные, для неподключенных регионов оценочные.</p>
       <p>Демонстрационные данные. Реальны только годовые объемы обращений, направленных в ведомства (источник: {data.meta.source}). Распределение по регионам, темам и месяцам, сроки и доли сгенерированы для демонстрации.</p>
     </footer>
   )

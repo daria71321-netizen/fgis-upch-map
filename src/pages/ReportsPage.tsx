@@ -165,7 +165,7 @@ export default function ReportsPage() {
           <h3 className="font-semibold">Рекомендации</h3>
           <RecList recs={rep.recs} compact />
         </section>
-        <footer className="text-xs text-muted border-t border-line pt-3">Карта для помощи, а не для наказания. Реальны только годовые объемы обращений по ведомствам (Доклад Уполномоченного за 2025 год, с. 558-559), остальные значения демонстрационные.</footer>
+        <footer className="text-xs text-muted border-t border-line pt-3">Данные могут быть неточными. Реальны только годовые объемы обращений по ведомствам (Доклад Уполномоченного за 2025 год, с. 558-559), остальные значения демонстрационные.</footer>
       </article>
     </div>
   )
