@@ -36,7 +36,7 @@ function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
         <Link to={`/${qs({ mode: 'min' })}`} className="flex items-center gap-3 px-2 pb-5 pt-1 rounded" onClick={onClose}>
           <span className="relative grid place-items-center w-10 h-10 rounded-full bg-accent text-white text-[11px] font-display font-medium tracking-wide shadow-[0_0_0_4px_rgba(194,65,75,.18)]">УПЧ</span>
           <span className="leading-tight">
-            <span className="block text-white font-display font-medium tracking-tight">ФГИС УПЧ</span>
+            <span className="block text-ink font-display font-medium tracking-tight">ФГИС УПЧ</span>
             <span className="block text-xs text-side-ink">Ведомственная панель</span>
           </span>
         </Link>
@@ -50,7 +50,7 @@ function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
               end={m.end}
               onClick={onClose}
               className={({ isActive }) =>
-                `flex items-center gap-3 rounded-full px-4 py-2.5 text-[15px] transition-colors ${(active ?? isActive) ? 'bg-side-act text-white font-semibold shadow-[0_8px_24px_-10px_rgba(194,65,75,.9)]' : 'hover:bg-white/[.06] hover:text-white'}`
+                `flex items-center gap-3 rounded-full px-4 py-2.5 text-[15px] transition-colors ${(active ?? isActive) ? 'bg-side-act text-white font-semibold shadow-[0_8px_24px_-10px_rgba(194,65,75,.9)]' : 'hover:bg-black/[.05] hover:text-ink'}`
               }
             >
               <m.icon size={18} aria-hidden />
@@ -58,7 +58,7 @@ function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
             </NavLink>
           )
         })}
-        <div className="mt-auto mx-1 rounded-[20px] bg-white/[.05] p-4 text-xs leading-snug text-side-ink"><span className="block font-display text-white text-sm mb-1">Карта для помощи,</span>а не для наказания</div>
+        <div className="mt-auto mx-1 rounded-[20px] bg-white/70 p-4 text-xs leading-snug text-side-ink"><span className="block font-display text-ink text-sm mb-1">Карта для помощи,</span>а не для наказания</div>
       </nav>
     </>
   )
@@ -200,7 +200,7 @@ export function Footer() {
   const { data } = useStore()
   return (
     <footer className="mt-10 mx-3 lg:mx-4 mb-3 rounded-[24px] bg-side text-side-ink px-6 py-5 text-xs grid gap-1.5">
-      <p className="text-sm text-white font-display font-normal tracking-tight">Карта для помощи, а не для наказания: показатели являются основанием для дополнительной проверки и анализа, а не для санкций.</p>
+      <p className="text-sm text-ink font-display font-normal tracking-tight">Карта для помощи, а не для наказания: показатели являются основанием для дополнительной проверки и анализа, а не для санкций.</p>
       <p>Демонстрационные данные. Реальны только годовые объемы обращений, направленных в ведомства (источник: {data.meta.source}). Распределение по регионам, темам и месяцам, сроки и доли сгенерированы для демонстрации.</p>
     </footer>
   )

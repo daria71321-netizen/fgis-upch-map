@@ -11,7 +11,7 @@ export default {
         muted: '#615A64',
         line: '#E9E3E1',
         line2: '#CFC9CB',
-        side: { DEFAULT: '#48484B', ink: '#E6E6E8', act: '#A3242F', bar: '#C2414B' },
+        side: { DEFAULT: '#E7E6E8', ink: '#4A464C', act: '#A3242F', bar: '#C2414B' },
         accent: { DEFAULT: '#A3242F', hover: '#8B1E2D', soft: '#F8E7E8', ink: '#7A1A24' },
         good: { DEFAULT: '#2B7A50', soft: '#E6F2EB' },
         bad: { DEFAULT: '#B3261E', soft: '#FBEAE8' },
