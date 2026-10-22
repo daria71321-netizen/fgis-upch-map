@@ -50,7 +50,7 @@ export default function Overview() {
       <section className="relative overflow-hidden rounded-xl bg-side text-white px-6 sm:px-9 py-7 sm:py-8">
         <div aria-hidden className="blob absolute -right-24 -top-28 w-[420px] h-[420px] bg-[radial-gradient(circle_at_30%_30%,#E0656D,#A3242F_45%,#5A1019_80%)] opacity-90 blur-[2px]" />
         <div aria-hidden className="blob absolute right-40 top-24 w-[180px] h-[180px] bg-[radial-gradient(circle_at_40%_40%,#F3A6A0,#C2414B_60%)] opacity-60 blur-xl [animation-delay:-6s]" />
-        <div aria-hidden className="absolute inset-0 bg-[linear-gradient(90deg,#1C181B_35%,rgba(28,24,27,.55)_70%,rgba(28,24,27,0))]" />
+        <div aria-hidden className="absolute inset-0 bg-[linear-gradient(90deg,#48484B_35%,rgba(72,72,75,.55)_70%,rgba(72,72,75,0))]" />
         <div className="relative grid gap-3 max-w-[720px]">
           <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#F3A6A0]">Обзор по России · {periodLabel(filters.period)}</span>
           <h1 className="font-display text-[28px] sm:text-[40px] leading-[1.04] font-medium tracking-[-0.03em]">{ved ? ved.name : 'Все ведомства'}</h1>
