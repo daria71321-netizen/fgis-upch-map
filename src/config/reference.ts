@@ -114,7 +114,7 @@ export const CONNECTED = new Set([
   'ROS', 'VOR', 'BEL', 'PER', 'CHE', 'IRK', 'KYA', 'PRI', 'KHA', 'ZAB', 'KLU', 'TYU', 'DPR',
 ])
 /** Демо: регионы без данных совсем */
-export const NODATA = new Set(['NEN', 'IN', 'YEV', 'KHE'])
+export const NODATA = new Set(['NEN', 'IN', 'YEV', 'KL'])
 
 export type RegionStatus = 'connected' | 'estimate' | 'nodata'
 export const regionStatus = (iso: string): RegionStatus =>

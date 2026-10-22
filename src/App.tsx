@@ -1,35 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Routes, Route, Link } from 'react-router-dom'
+import Layout from './components/Layout'
+import Overview from './pages/Overview'
+import MapPage from './pages/MapPage'
+import RegionPage from './pages/RegionPage'
+import VedsPage from './pages/VedsPage'
+import TypicalPage from './pages/TypicalPage'
+import CasesPage from './pages/CasesPage'
+import CasePage from './pages/CasePage'
+import ReportsPage from './pages/ReportsPage'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+function NotFound() {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="card card-pad grid gap-2 max-w-lg">
+      <h1 className="text-xl font-semibold">Страница не найдена</h1>
+      <Link to="/" className="link">Вернуться к карте России</Link>
+    </div>
   )
 }
 
-export default App
+export default function App() {
+  return (
+    <Layout>
+      <Routes>
+        <Route path="/" element={<Overview />} />
+        <Route path="/map" element={<MapPage />} />
+        <Route path="/veds" element={<VedsPage />} />
+        <Route path="/region/:num" element={<RegionPage />} />
+        <Route path="/typical" element={<TypicalPage />} />
+        <Route path="/cases" element={<CasesPage />} />
+        <Route path="/case/:id" element={<CasePage />} />
+        <Route path="/reports" element={<ReportsPage />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Layout>
+  )
+}

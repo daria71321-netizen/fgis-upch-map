@@ -63,7 +63,7 @@ const TOPIC_BASE: Record<VedId, number[]> = {
 }
 // Особые сюжеты для демонстрации
 const SPECIAL_GROWTH: Record<string, number> = {
-  'IRK|mo|pay': 0.55, 'BU|mo|pay': 0.45, 'ZAB|mo|search': 0.4, 'KYA|mo|pay': 0.32, 'SAR|prok|orphans': 0.4,
+  'IRK|mo|pay': 0.85, 'BU|mo|pay': 0.45, 'ZAB|mo|search': 0.4, 'KYA|mo|pay': 0.32, 'SAR|prok|orphans': 0.4,
   'NIZ|trud|tsr': 0.3, 'IRK|prok|nonexec': 0.3, 'PER|fsin|fmed': 0.35,
 }
 const season = (m: number) => 1 + 0.12 * Math.cos(((m - 3) / 12) * 2 * Math.PI) - (m === 1 ? 0.15 : 0) - (m === 5 ? 0.06 : 0)
@@ -86,13 +86,13 @@ const VED_Q: Record<VedId, Quality> = {
   mvd: { days: 26, restore: 0.36, repeat: 0.12 }, fsin: { days: 24, restore: 0.32, repeat: 0.15 },
   trud: { days: 21, restore: 0.56, repeat: 0.08 },
 }
-const BAD_REGIONS: Record<string, number> = { IRK: 1.35, ZAB: 1.3, BU: 1.25, KYA: 1.15, SAR: 1.2, DPR: 1.25, PRI: 1.1 }
+const BAD_REGIONS: Record<string, number> = { IRK: 1.2, ZAB: 1.3, BU: 1.25, KYA: 1.15, SAR: 1.2, DPR: 1.25, PRI: 1.1 }
 const GOOD_REGIONS: Record<string, number> = { TA: 0.72, TUL: 0.78, BEL: 0.85, KLU: 0.8, TYU: 0.8, MOW: 0.85, NIZ: 0.88 }
 for (const r of REGIONS) for (const v of VEDS) {
   const f = (BAD_REGIONS[r.iso] ?? GOOD_REGIONS[r.iso] ?? 1) * Math.exp(randn() * 0.18)
   const q = VED_Q[v.id]
   quality.set(`${r.iso}|${v.id}`, {
-    days: clamp(q.days * f, 9, 58),
+    days: clamp(q.days * f, 9, 47),
     restore: clamp(q.restore / f + randn() * 0.05, 0.1, 0.75),
     repeat: clamp(q.repeat * f * f + randn() * 0.02, 0.02, 0.34),
   })
@@ -114,7 +114,7 @@ for (const v of VEDS) {
       const gt = g + (SPECIAL_GROWTH[`${r.iso}|${v.id}|${t.id}`] ?? 0) + randn() * 0.06
       return MONTHS.map((_, mi) => {
         const yrs = (yearOf(mi) - 2023) + (monthOf(mi) - 1) / 12
-        let x = base * shares[ti] * Math.pow(Math.max(0.3, 1 + gt), yrs) * season(monthOf(mi)) * Math.exp(randn() * 0.12)
+        let x = base * shares[ti] * Math.pow(Math.max(0.7, 1 + gt), yrs) * season(monthOf(mi)) * Math.exp(randn() * 0.12)
         if (MONTHS[mi] === PARTIAL_MONTH) x *= PARTIAL_FACTOR
         return x
       })
