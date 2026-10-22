@@ -34,7 +34,7 @@ export default function CasePage() {
       <Breadcrumbs items={[{ label: 'Обзор по России', to: `/${qs()}` }, { label: 'Обращения', to: `/cases${qs()}` }, { label: c.id }]} />
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="grid gap-1.5">
-          <h1 className="text-2xl font-semibold num">Обращение {c.id}</h1>
+          <h1 className="page-title">Обращение {c.id}</h1>
           <div className="flex flex-wrap gap-2 items-center">
             <span className={`badge ${statusClass(c.status)}`}>{c.status}</span>
             <span className={`badge ${PRIORITY_CLASS[c.priority.cls]}`}>Приоритет: {c.priority.cls}, {c.priority.score} баллов</span>

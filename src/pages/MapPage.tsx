@@ -17,12 +17,12 @@ export default function MapPage() {
       <Breadcrumbs items={[{ label: 'Обзор по России', to: `/${qs()}` }, { label: 'Карта регионов' }]} />
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-semibold">Карта регионов: {ved ? ved.name : 'все ведомства'}</h1>
+          <h1 className="page-title">Карта регионов: {ved ? ved.name : 'все ведомства'}</h1>
           <p className="text-muted">{metric.name} · {periodLabel(filters.period)}</p>
         </div>
         <FilterChips />
       </div>
-      <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_320px] 2xl:grid-cols-[minmax(0,1fr)_360px]">
+      <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_360px]">
         <Section title="Карта субъектов РФ"><MapPanel /></Section>
         <div className="grid gap-4 content-start">
           <Section title={`Топ-10: ${metric.short.toLowerCase()}`}><Top10 stats={stats} metric={filters.metric} /></Section>

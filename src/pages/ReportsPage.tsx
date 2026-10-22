@@ -84,7 +84,7 @@ export default function ReportsPage() {
     <div className="grid gap-4">
       <Breadcrumbs items={[{ label: 'Обзор по России', to: `/${qs()}` }, { label: 'Отчетность' }]} />
       <div className="no-print">
-        <h1 className="text-2xl font-semibold">Отчетность</h1>
+        <h1 className="page-title">Отчетность</h1>
         <p className="text-muted">Справки для ведомства и губернатора: выберите шаблон и параметры, затем выгрузите таблицу или распечатайте.</p>
       </div>
       <div className="card card-pad grid gap-4 no-print">

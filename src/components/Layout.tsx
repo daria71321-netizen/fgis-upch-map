@@ -30,13 +30,13 @@ function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
     <>
       {open && <div className="fixed inset-0 bg-black/30 z-30 lg:hidden" onClick={onClose} aria-hidden />}
       <nav
-        className={`no-print fixed lg:sticky top-0 z-40 h-screen w-[248px] shrink-0 bg-side text-side-ink flex flex-col px-3 py-4 gap-1 transition-transform lg:translate-x-0 ${open ? 'translate-x-0' : '-translate-x-full'}`}
+        className={`no-print fixed lg:sticky top-0 lg:top-3 z-40 h-screen lg:h-[calc(100vh-24px)] lg:m-3 lg:mr-0 w-[248px] shrink-0 bg-side text-side-ink flex flex-col px-3 py-5 gap-1 lg:rounded-[28px] overflow-hidden transition-transform lg:translate-x-0 ${open ? 'translate-x-0' : '-translate-x-full'}`}
         aria-label="Основное меню"
       >
         <Link to={`/${qs({ mode: 'min' })}`} className="flex items-center gap-3 px-2 pb-5 pt-1 rounded" onClick={onClose}>
-          <span className="grid place-items-center w-9 h-9 rounded bg-accent text-white text-xs font-bold tracking-wide">УПЧ</span>
+          <span className="relative grid place-items-center w-10 h-10 rounded-full bg-accent text-white text-[11px] font-display font-medium tracking-wide shadow-[0_0_0_4px_rgba(194,65,75,.18)]">УПЧ</span>
           <span className="leading-tight">
-            <span className="block text-white font-semibold">ФГИС УПЧ</span>
+            <span className="block text-white font-display font-medium tracking-tight">ФГИС УПЧ</span>
             <span className="block text-xs text-side-ink">Ведомственная панель</span>
           </span>
         </Link>
@@ -50,7 +50,7 @@ function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
               end={m.end}
               onClick={onClose}
               className={({ isActive }) =>
-                `flex items-center gap-3 rounded px-3 py-2.5 text-[15px] ${(active ?? isActive) ? 'bg-side-act text-white font-medium shadow-[inset_3px_0_0_#C2414B]' : 'hover:bg-white/5 hover:text-white'}`
+                `flex items-center gap-3 rounded-full px-4 py-2.5 text-[15px] transition-colors ${(active ?? isActive) ? 'bg-side-act text-white font-semibold shadow-[0_8px_24px_-10px_rgba(194,65,75,.9)]' : 'hover:bg-white/[.06] hover:text-white'}`
               }
             >
               <m.icon size={18} aria-hidden />
@@ -58,7 +58,7 @@ function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
             </NavLink>
           )
         })}
-        <p className="mt-auto px-3 text-xs text-side-ink/80 leading-snug">Карта для помощи, а не для наказания</p>
+        <div className="mt-auto mx-1 rounded-[20px] bg-white/[.05] p-4 text-xs leading-snug text-side-ink"><span className="block font-display text-white text-sm mb-1">Карта для помощи,</span>а не для наказания</div>
       </nav>
     </>
   )
@@ -86,7 +86,7 @@ function SearchBox() {
   const go = (to: string) => { nav(`${to}${qs()}`); setQ(''); setOpen(false) }
   return (
     <div ref={ref} className="relative w-full sm:w-64">
-      <label className="flex items-center gap-2 rounded border border-line2 bg-surface px-3 py-1.5 focus-within:border-accent">
+      <label className="flex items-center gap-2 rounded-full border border-line2 bg-surface px-4 py-2 focus-within:border-accent">
         <Search size={16} className="text-muted shrink-0" aria-hidden />
         <span className="sr-only">Поиск по региону и номеру обращения</span>
         <input
@@ -100,7 +100,7 @@ function SearchBox() {
         />
       </label>
       {open && res.length > 0 && (
-        <ul className="absolute z-50 mt-1 w-full sm:w-80 right-0 rounded border border-line bg-surface shadow-pop py-1" role="listbox">
+        <ul className="absolute z-50 mt-1 w-full sm:w-80 right-0 rounded-[18px] border border-line bg-surface shadow-pop py-2" role="listbox">
           {res.map((r) => (
             <li key={r.key}>
               <button className="w-full text-left px-3 py-2 hover:bg-bg flex justify-between gap-3 text-sm" onClick={() => go(r.to)}>
@@ -127,11 +127,11 @@ function Topbar({ onMenu }: { onMenu: () => void }) {
     } else nav(`/?p=${filters.period}${filters.ved !== 'all' ? `&ved=${filters.ved}` : ''}`)
   }
   return (
-    <header className="no-print lg:sticky top-0 z-20 bg-surface border-b border-line">
+    <header className="no-print lg:sticky top-3 z-20 mx-3 lg:mx-4 mt-3 rounded-[24px] glass shadow-card">
       <div className="flex flex-wrap items-center gap-x-3 gap-y-2 px-4 lg:px-6 py-2.5">
         <button className="lg:hidden btn-ghost !p-2" onClick={onMenu} aria-label="Открыть меню"><Menu size={20} aria-hidden /></button>
-        <span className="font-semibold text-md whitespace-nowrap">Ведомственная карта ФГИС УПЧ</span>
-        <span className="badge border border-dashed border-accent text-accent-ink bg-accent-soft" title="Все значения, кроме объемов по ведомствам из доклада, являются тестовыми">Демонстрационный режим</span>
+        <span className="font-display font-medium text-md tracking-tight whitespace-nowrap">Ведомственная карта</span>
+        <span className="badge border border-accent/30 text-accent-ink bg-accent-soft" title="Все значения, кроме объемов по ведомствам из доклада, являются тестовыми">Демонстрационный режим</span>
         <div className="ml-auto flex flex-wrap items-center gap-2 text-xs text-muted">
           <span>Обновлено {fmtDate(DATA_DATE)}</span>
           <SearchBox />
@@ -140,7 +140,7 @@ function Topbar({ onMenu }: { onMenu: () => void }) {
       <div className="flex flex-wrap items-center gap-2 px-4 lg:px-6 pb-2.5">
         <div className="flex items-center gap-2 min-w-0 max-w-full">
           <span className="label hidden md:inline">Ведомство</span>
-          <div className="hidden xl:flex rounded bg-bg p-0.5" role="radiogroup" aria-label="Ведомство">
+          <div className="hidden xl:flex rounded-full bg-bg p-1" role="radiogroup" aria-label="Ведомство">
             {(['all', ...VEDS.map((v) => v.id)] as VedFilter[]).map((v) => {
               const on = filters.ved === v
               return (
@@ -149,7 +149,7 @@ function Topbar({ onMenu }: { onMenu: () => void }) {
                   role="radio"
                   aria-checked={on}
                   onClick={() => setVed(v)}
-                  className={`px-3 py-1.5 rounded text-sm whitespace-nowrap ${on ? 'bg-accent text-white font-medium' : 'text-ink hover:bg-surface'}`}
+                  className={`px-3.5 py-1.5 rounded-full text-sm whitespace-nowrap transition-all ${on ? 'bg-ink text-white font-semibold shadow' : 'text-ink hover:bg-surface'}`}
                 >
                   {v === 'all' ? 'Все ведомства' : VEDS.find((x) => x.id === v)!.short}
                 </button>
@@ -176,10 +176,10 @@ function Topbar({ onMenu }: { onMenu: () => void }) {
             </optgroup>
           </select>
         </div>
-        <div className="flex rounded border border-line2 p-0.5 text-sm" role="radiogroup" aria-label="Режим просмотра">
+        <div className="flex rounded-full bg-bg p-1 text-sm" role="radiogroup" aria-label="Режим просмотра">
           {(['min', 'gov'] as const).map((m) => (
             <button key={m} role="radio" aria-checked={filters.mode === m} onClick={() => setMode(m)}
-              className={`px-3 py-1 rounded ${filters.mode === m ? 'bg-accent-soft text-accent-ink font-semibold' : 'text-muted hover:text-ink'}`}>
+              className={`px-3.5 py-1.5 rounded-full transition-all ${filters.mode === m ? 'bg-accent text-white font-semibold shadow' : 'text-muted hover:text-ink'}`}>
               {m === 'min' ? 'Министерство' : 'Губернатор'}
             </button>
           ))}
@@ -199,8 +199,8 @@ function Topbar({ onMenu }: { onMenu: () => void }) {
 export function Footer() {
   const { data } = useStore()
   return (
-    <footer className="mt-8 border-t border-line px-4 lg:px-6 py-4 text-xs text-muted grid gap-1">
-      <p className="text-sm text-ink font-medium">Карта для помощи, а не для наказания: показатели являются основанием для дополнительной проверки и анализа, а не для санкций.</p>
+    <footer className="mt-10 mx-3 lg:mx-4 mb-3 rounded-[24px] bg-side text-side-ink px-6 py-5 text-xs grid gap-1.5">
+      <p className="text-sm text-white font-display font-normal tracking-tight">Карта для помощи, а не для наказания: показатели являются основанием для дополнительной проверки и анализа, а не для санкций.</p>
       <p>Демонстрационные данные. Реальны только годовые объемы обращений, направленных в ведомства (источник: {data.meta.source}). Распределение по регионам, темам и месяцам, сроки и доли сгенерированы для демонстрации.</p>
     </footer>
   )
@@ -216,7 +216,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       {open && <button className="fixed top-3 left-[256px] z-50 btn-secondary !p-2 lg:hidden" onClick={() => setOpen(false)} aria-label="Закрыть меню"><X size={18} aria-hidden /></button>}
       <div className="flex-1 min-w-0 flex flex-col">
         <Topbar onMenu={() => setOpen(true)} />
-        <main className="flex-1 px-4 lg:px-6 py-5 print-full">{children}</main>
+        <main key={loc.pathname} className="page-enter flex-1 px-4 lg:px-7 py-6 print-full">{children}</main>
         <Footer />
       </div>
     </div>

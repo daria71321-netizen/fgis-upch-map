@@ -29,7 +29,7 @@ export default function TypicalPage() {
     <div className="grid gap-4">
       <Breadcrumbs items={[{ label: 'Обзор по России', to: `/${qs()}` }, { label: 'Типовые обращения' }]} />
       <div>
-        <h1 className="text-2xl font-semibold">Типовые обращения</h1>
+        <h1 className="page-title">Типовые обращения</h1>
         <p className="text-muted">Путь жалобы от гражданина до ведомства. Заявители обезличены, примеры демонстрационные.</p>
       </div>
       <div className="grid gap-4 md:grid-cols-2 2xl:grid-cols-3">

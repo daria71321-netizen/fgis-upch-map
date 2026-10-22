@@ -14,10 +14,10 @@ import { Delta, ClassPill } from './ui'
 
 function KpiRow({ to, label, value, sub, children }: { to: string; label: string; value: string; sub?: ReactNode; children?: ReactNode }) {
   return (
-    <Link to={to} className="group grid grid-cols-[1fr_auto] gap-x-3 gap-y-0.5 px-4 py-3 border-b border-line last:border-b-0 hover:bg-bg">
+    <Link to={to} className="group grid grid-cols-[1fr_auto] gap-x-3 gap-y-1 px-5 py-4 border-b border-line last:border-b-0 hover:bg-bg/70 transition-colors">
       <span className="text-sm text-muted">{label}</span>
       <span className="row-span-2 self-center flex items-center gap-1">
-        <span className="num text-xl font-semibold text-ink">{value}</span>
+        <span className="kpi-num text-[24px]">{value}</span>
         <ChevronRight size={16} className="text-line2 group-hover:text-muted" aria-hidden />
       </span>
       <span className="text-xs">{sub}</span>
@@ -43,7 +43,7 @@ export function KpiColumn() {
         sub={<span className="text-muted">признак формальных ответов</span>} />
       <KpiRow to={`/map${qs()}`} label="Охват регионов системой" value={`${CONNECTED.size} из ${TOTAL_REGIONS}`}
         sub={<span className="text-muted">{TOTAL_REGIONS - CONNECTED.size} в режиме «Оценка» или без данных</span>} />
-      <p className="px-4 py-2 text-xs text-muted bg-bg">Сроки, доли восстановленных и повторных считаются по {CONNECTED.size} подключенным регионам.</p>
+      <p className="px-5 py-3 text-xs text-muted bg-bg/60">Сроки, доли восстановленных и повторных считаются по {CONNECTED.size} подключенным регионам.</p>
     </section>
   )
 }

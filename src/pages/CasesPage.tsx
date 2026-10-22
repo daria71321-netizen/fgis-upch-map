@@ -88,7 +88,7 @@ export default function CasesPage() {
       <Breadcrumbs items={[{ label: 'Обзор по России', to: `/${qs()}` }, { label: 'Обращения' }]} />
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-semibold">Обращения</h1>
+          <h1 className="page-title">Обращения</h1>
           <p className="text-muted text-sm">Демонстрационная выборка карточек по подключенным регионам · {periodLabel(filters.period)}{region ? ` · ${regionByIso.get(region)?.name}` : ''}</p>
         </div>
         <button className="btn-secondary" onClick={exportCsv}><Download size={16} aria-hidden />Выгрузить в CSV ({fmtInt(list.length)})</button>

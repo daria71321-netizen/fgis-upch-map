@@ -1,17 +1,17 @@
-/** Дизайн-система «Оперативный штаб» (направление C). Описание: DESIGN.md */
+/** Дизайн-система «Континуум» (направление C, современная редакция). Описание: DESIGN.md */
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{ts,tsx}'],
   theme: {
     extend: {
       colors: {
-        bg: '#F4F2F2',
+        bg: '#F3EFED',
         surface: '#FFFFFF',
         ink: '#222023',
         muted: '#615A64',
-        line: '#E2DEDF',
+        line: '#E9E3E1',
         line2: '#CFC9CB',
-        side: { DEFAULT: '#26232A', ink: '#DCD6DA', act: '#3A3238', bar: '#C2414B' },
+        side: { DEFAULT: '#1C181B', ink: '#D9D1D4', act: '#A3242F', bar: '#C2414B' },
         accent: { DEFAULT: '#A3242F', hover: '#8B1E2D', soft: '#F8E7E8', ink: '#7A1A24' },
         good: { DEFAULT: '#2B7A50', soft: '#E6F2EB' },
         bad: { DEFAULT: '#B3261E', soft: '#FBEAE8' },
@@ -23,15 +23,16 @@ export default {
         nodata: '#7F797D',
       },
       fontFamily: {
-        sans: ['Onest', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
-        mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
+        sans: ['Manrope', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+        display: ['Unbounded', 'Manrope', 'system-ui', 'sans-serif'],
+        mono: ['Manrope', 'system-ui', 'sans-serif'],
       },
       fontSize: {
         xs: ['13px', '18px'], sm: ['14px', '20px'], base: ['15px', '22px'], md: ['16px', '24px'],
         lg: ['18px', '26px'], xl: ['22px', '28px'], '2xl': ['26px', '32px'], '3xl': ['32px', '38px'],
       },
-      borderRadius: { DEFAULT: '8px', md: '8px', lg: '10px' },
-      boxShadow: { card: '0 1px 3px rgba(30,20,25,.06)', pop: '0 6px 24px rgba(40,10,15,.16)' },
+      borderRadius: { DEFAULT: '12px', md: '12px', lg: '22px', xl: '28px' },
+      boxShadow: { card: '0 1px 2px rgba(40,20,25,.04), 0 8px 28px -12px rgba(60,20,30,.12)', pop: '0 18px 48px -12px rgba(40,10,15,.28)' },
     },
   },
   plugins: [],

@@ -22,7 +22,7 @@ export default function VedsPage() {
       <Breadcrumbs items={[{ label: 'Обзор по России', to: `/${qs()}` }, { label: 'Ведомства' }]} />
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-semibold">Ведомства</h1>
+          <h1 className="page-title">Ведомства</h1>
           <p className="text-muted">Сфера каждого ведомства по всей России · {periodLabel(filters.period)}</p>
         </div>
         <FilterChips />

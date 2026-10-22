@@ -47,15 +47,18 @@ export default function Overview() {
 
   return (
     <div className="grid gap-4">
-      <div className="flex flex-wrap items-end justify-between gap-3">
-        <div>
-          <h1 className="text-2xl font-semibold">Обзор по России: {ved ? ved.name : 'все ведомства'}</h1>
-          <p className="text-muted">{ved ? `Слой «${ved.layer}»` : 'Обращения, направленные Уполномоченным в пять ведомств'} · {periodLabel(filters.period)}</p>
+      <section className="relative overflow-hidden rounded-xl bg-side text-white px-6 sm:px-9 py-7 sm:py-8">
+        <div aria-hidden className="blob absolute -right-24 -top-28 w-[420px] h-[420px] bg-[radial-gradient(circle_at_30%_30%,#E0656D,#A3242F_45%,#5A1019_80%)] opacity-90 blur-[2px]" />
+        <div aria-hidden className="blob absolute right-40 top-24 w-[180px] h-[180px] bg-[radial-gradient(circle_at_40%_40%,#F3A6A0,#C2414B_60%)] opacity-60 blur-xl [animation-delay:-6s]" />
+        <div aria-hidden className="absolute inset-0 bg-[linear-gradient(90deg,#1C181B_35%,rgba(28,24,27,.55)_70%,rgba(28,24,27,0))]" />
+        <div className="relative grid gap-3 max-w-[720px]">
+          <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#F3A6A0]">Обзор по России · {periodLabel(filters.period)}</span>
+          <h1 className="font-display text-[28px] sm:text-[40px] leading-[1.04] font-medium tracking-[-0.03em]">{ved ? ved.name : 'Все ведомства'}</h1>
+          <p className="text-[16px] text-white/75 max-w-[60ch]">{ved ? `Слой «${ved.layer}»: где в сфере ведомства нарушаются права граждан, как это меняется и что уже сделано.` : 'Обращения, которые Уполномоченный направляет в пять ведомств: где нарушаются права, как это меняется и что уже сделано.'}</p>
         </div>
-        <FilterChips />
-      </div>
-
-      <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_320px] 2xl:grid-cols-[minmax(0,1fr)_360px]">
+      </section>
+      <FilterChips />
+      <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_360px]">
         <div className="grid gap-4 content-start min-w-0">
           <Section title={`Карта регионов${ved ? `: ${ved.short}` : ''}`}>
             <MapPanel />
@@ -72,7 +75,7 @@ export default function Overview() {
         </div>
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-2 2xl:grid-cols-3">
+      <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-3">
         <Section title={ved ? `Темы: ${ved.short}` : 'Распределение по ведомствам'} aside={<span className="text-xs text-muted">количество · доля · к прошлому году</span>}>
           <BarList
             rows={topics.map((t) => ({

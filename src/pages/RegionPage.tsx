@@ -34,7 +34,7 @@ function KpiCard({ to, label, value, sub, cmp, noColor }: { to?: string; label: 
   const body = (
     <>
       <span className="text-sm text-muted">{label}</span>
-      <span className="num text-2xl font-semibold">{value}</span>
+      <span className="kpi-num text-[30px]">{value}</span>
       {sub && <span className="text-xs">{sub}</span>}
       <Compare c={cmp} noColor={noColor} />
     </>
@@ -119,7 +119,7 @@ export default function RegionPage() {
       <Breadcrumbs items={[{ label: 'Обзор по России', to: `/${qs({ mode: 'min' })}` }, { label: 'Карта регионов', to: `/map${qs({ mode: 'min' })}` }, { label: reg.name }]} />
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="grid gap-1.5">
-          <h1 className="text-2xl font-semibold">{reg.name}</h1>
+          <h1 className="page-title">{reg.name}</h1>
           <div className="flex flex-wrap items-center gap-2 text-sm text-muted">
             <span>{reg.fd}</span><span>·</span><span>код субъекта {reg.num}</span><span>·</span>
             <StatusBadge status={status} />

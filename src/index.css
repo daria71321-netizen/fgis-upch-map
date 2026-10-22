@@ -4,38 +4,69 @@
 
 @layer base {
   html { font-size: 15px; }
-  body { @apply bg-bg text-ink font-sans antialiased; font-variant-numeric: tabular-nums; }
+  body {
+    @apply bg-bg text-ink font-sans antialiased;
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum' 1;
+    background-image:
+      radial-gradient(1200px 520px at 85% -10%, rgba(163, 36, 47, .07), transparent 60%),
+      radial-gradient(900px 480px at -10% 30%, rgba(194, 65, 75, .045), transparent 60%);
+    background-attachment: fixed;
+  }
   h1, h2, h3 { text-wrap: balance; }
   :focus-visible { outline: 2px solid #A3242F; outline-offset: 2px; }
   button { cursor: pointer; }
 }
 
 @layer components {
-  .card { @apply bg-surface border border-line rounded-lg shadow-card; }
-  .card-pad { @apply p-4 sm:p-5; }
-  .h-section { @apply text-md font-semibold text-ink; }
-  .num { @apply font-mono; font-variant-numeric: tabular-nums; }
-  .btn { @apply inline-flex items-center justify-center gap-2 rounded px-3.5 py-2 text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed; }
-  .btn-primary { @apply btn bg-accent text-white hover:bg-accent-hover; }
-  .btn-secondary { @apply btn bg-surface border border-line2 text-ink hover:bg-bg; }
+  .card { @apply bg-surface rounded-lg shadow-card border border-white/60; }
+  .card-pad { @apply p-5 sm:p-6; }
+  .h-section { @apply text-[17px] font-bold tracking-[-0.01em] text-ink; }
+  .page-title { @apply font-display text-[26px] sm:text-[32px] leading-[1.1] font-medium tracking-[-0.02em]; }
+  .kpi-num { @apply font-display font-medium tracking-[-0.03em] leading-none text-ink; }
+  .eyebrow { @apply text-xs font-semibold uppercase tracking-[0.12em] text-accent; }
+  .num { font-variant-numeric: tabular-nums; @apply font-semibold; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed; }
+  .btn-primary { @apply btn bg-accent text-white hover:bg-accent-hover hover:shadow-[0_8px_20px_-8px_rgba(163,36,47,.6)]; }
+  .btn-secondary { @apply btn bg-surface border border-line2 text-ink hover:border-ink; }
   .btn-ghost { @apply btn text-ink hover:bg-bg; }
-  .select { @apply max-w-full min-w-0 rounded border border-line2 bg-surface px-3 py-2 text-sm text-ink hover:border-muted; }
-  .chip { @apply inline-flex items-center gap-1.5 rounded-full border border-line2 bg-surface pl-3 pr-1.5 py-1 text-xs text-ink; }
-  .badge { @apply whitespace-nowrap inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium; }
-  .label { @apply text-xs text-muted; }
+  .select { @apply max-w-full min-w-0 rounded-full border border-line2 bg-surface pl-4 pr-8 py-2 text-sm text-ink hover:border-muted; }
+  .chip { @apply inline-flex items-center gap-1.5 rounded-full bg-surface border border-line2 pl-3.5 pr-1.5 py-1 text-xs font-medium text-ink; }
+  .badge { @apply whitespace-nowrap inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold; }
+  .label { @apply text-xs font-medium text-muted; }
   .table-wrap { @apply overflow-x-auto; }
   .tbl { @apply w-full text-sm; }
-  .tbl th { @apply text-left font-medium text-muted text-xs px-3 py-2 border-b border-line whitespace-nowrap; }
-  .tbl td { @apply px-3 py-2.5 border-b border-line align-top; }
-  .tbl tbody tr { @apply hover:bg-bg; }
-  .link { @apply text-accent hover:underline underline-offset-2; }
+  .tbl th { @apply text-left font-semibold text-muted text-xs px-3 py-2.5 border-b border-line whitespace-nowrap; }
+  .tbl td { @apply px-3 py-3 border-b border-line align-top; }
+  .tbl tbody tr { @apply hover:bg-bg/70 transition-colors; }
+  .link { @apply text-accent font-medium hover:underline underline-offset-4; }
+  .glass { @apply bg-white/75 backdrop-blur-xl border border-white/70; }
 }
 
 .hatch { background: repeating-linear-gradient(45deg, #C6C1C4 0 1.5px, #EBE9EA 1.5px 5px); }
+
+/* Плавное появление страниц */
+@keyframes rise { from { opacity: .001; transform: translateY(10px) } to { opacity: 1; transform: none } }
+.page-enter { animation: rise .5s cubic-bezier(.2,.7,.2,1) both; }
+
+/* Живая форма «идея меняет форму» в шапке обзора */
+@keyframes morph {
+  0%, 100% { border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%; transform: rotate(0deg) scale(1) }
+  33% { border-radius: 63% 37% 41% 59% / 56% 62% 38% 44%; transform: rotate(40deg) scale(1.06) }
+  66% { border-radius: 37% 63% 52% 48% / 38% 46% 54% 62%; transform: rotate(-25deg) scale(.96) }
+}
+.blob { animation: morph 16s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .blob, .page-enter { animation: none } }
 
 @media print {
   .no-print { display: none !important; }
   body { background: #fff; }
   .card { box-shadow: none; break-inside: avoid; }
   .print-full { width: 100% !important; margin: 0 !important; }
+}
+
+.select {
+  -webkit-appearance: none; appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23615A64' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center;
 }
